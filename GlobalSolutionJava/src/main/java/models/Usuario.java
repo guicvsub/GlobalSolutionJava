@@ -33,9 +33,15 @@ public class Usuario {
     public void setSenha(String Senha) {
         this.Senha = Senha;
     }
-    public void autenticar(String email, String senha )  {
-    
+    public void autenticar(String email, String senha) {
+    // Verifica se o email e a senha fornecidos coincidem com o do usuário
+     if (this.email.equals(email) && this.Senha.equals(senha)) {
+        System.out.println("Usuário autenticado com sucesso!");
+    } else {
+        System.out.println("Falha na autenticação. E-mail ou senha incorretos.");
     }
+}
+
     public void registrarComodo(){
         
         
