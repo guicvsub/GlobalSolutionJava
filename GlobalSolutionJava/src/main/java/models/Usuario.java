@@ -1,6 +1,9 @@
 
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author gui
@@ -17,6 +20,7 @@ public class Usuario {
         this.email = email;
         this.Senha = Senha;
     }
+      List<Comodo> listaDeComodos = new ArrayList<>();
 
     public String getNome() {
         return nome;

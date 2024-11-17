@@ -1,6 +1,6 @@
-package com.mycompany.globalsolutionjava; // Certifique-se de que o pacote está correto
-
+package com.mycompany.globalsolutionjava; 
 import models.Usuario;
+import java.util.Scanner; // Importação da classe Scanner
 
 public class GlobalSolutionJava {
 
@@ -9,7 +9,7 @@ public class GlobalSolutionJava {
         // Criando um objeto Usuario com dados iniciais
         Usuario usuario = new Usuario(1, "Guilherme", "guilherme@example.com", "senha123");
 
-        // Passo 1: Testando o método de autenticação
+        // Passo 1: Testando o método de autenticação com Scanner
         testarAutenticacao(usuario);
 
         // Passo 2: Testando os métodos de acesso e modificação de dados do usuário
@@ -22,13 +22,21 @@ public class GlobalSolutionJava {
         usuario.gerarRelatorio();
     }
 
-    // Método para testar a autenticação do usuário
+    // Método para testar a autenticação do usuário com dados do Scanner
     private static void testarAutenticacao(Usuario usuario) {
-        System.out.println("Tentando autenticar com os dados corretos...");
-        usuario.autenticar("guilherme@example.com", "senha123");
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Tentando autenticar com dados incorretos...");
-        usuario.autenticar("guilherme@example.com", "senhaErrada");
+        System.out.println("Digite o e-mail para autenticação:");
+        String email = scanner.nextLine(); // Captura o email
+
+        System.out.println("Digite a senha para autenticação:");
+        String senha = scanner.nextLine(); // Captura a senha
+
+        System.out.println("\nTentando autenticar com os dados fornecidos...");
+        usuario.autenticar(email, senha); // Chama o método autenticar passando os dados do usuário
+
+        // Fechando o scanner após o uso
+        scanner.close();
     }
 
     // Método para testar os métodos de acesso e modificação dos atributos do usuário
