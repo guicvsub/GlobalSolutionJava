@@ -8,7 +8,7 @@ package models;
  *
  * @author gui
  */
-public class Entidade {
+public abstract class Base {
   
     public void salvar() {
         System.out.println("Entidade salva!");

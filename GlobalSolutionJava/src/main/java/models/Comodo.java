@@ -1,56 +1,93 @@
+
 package models;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author gui
- */
-public class Comodo {
-    private int id; 
-    private String nomeComodo;
-    private Float area;
+public class Comodo extends Base {
+    private int idComodo;
+    private String nome;
+    private float area;
+    private List<Dispositivo> dispositivos;
 
-    public Comodo(int id, String nomeComodo, Float area) {
-        this.id = id;
-        this.nomeComodo = nomeComodo;
+    // Construtor
+    public Comodo(int idComodo, String nome, float area) {
+        this.idComodo = idComodo;
+        this.nome = nome;
         this.area = area;
-    }
-   List<Dispositivo> listaDeDispositivos = new ArrayList<>();
-    
-   public Comodo(int id, String nomeComodo) {
-        this.id = id;
-        this.nomeComodo = nomeComodo;
+        this.dispositivos = new ArrayList<>();
     }
 
-    public String getNomeComodo() {
-        return nomeComodo;
+    // Getters e Setters
+    public int getIdComodo() {
+        return idComodo;
     }
 
-    public Float getArea() {
+    public void setIdComodo(int idComodo) {
+        this.idComodo = idComodo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public float getArea() {
         return area;
     }
 
-    public void setNomeComodo(String nomeComodo) {
-        this.nomeComodo = nomeComodo;
-    }
-
-    public void setArea(Float area) {
+    public void setArea(float area) {
         this.area = area;
     }
-    public void adicionarDispositivo(Dispositivo dispositivo) {
-        listaDeDispositivos.add(dispositivo);
+
+    public List<Dispositivo> getDispositivos() {
+        return dispositivos;
     }
+
+    // Métodos específicos
+    public void adicionarDispositivo(Dispositivo dispositivo) {
+        dispositivos.add(dispositivo);
+        System.out.println("Dispositivo adicionado ao cômodo " + nome + ": " + dispositivo.getModelo());
+    }
+
     public void listarDispositivos() {
-        if (listaDeDispositivos.isEmpty()) {
-            System.out.println("Nenhum dispositivo encontrado no cômodo.");
+        if (dispositivos.isEmpty()) {
+            System.out.println("Nenhum dispositivo registrado no cômodo " + nome + ".");
         } else {
-            System.out.println("Dispositivos no cômodo " + nomeComodo + ":");
-            for (Dispositivo dispositivo : listaDeDispositivos) {
-                System.out.println(dispositivo);
+            System.out.println("Dispositivos no cômodo " + nome + ":");
+            for (Dispositivo dispositivo : dispositivos) {
+                System.out.println("- " + dispositivo);
             }
         }
-    
+    }
+
+    // Métodos herdados da classe Base
+    @Override
+    public void salvar() {
+        System.out.println("Cômodo \"" + nome + "\" salvo com sucesso!");
+    }
+
+    @Override
+    public void atualizar() {
+        System.out.println("Cômodo \"" + nome + "\" atualizado com sucesso!");
+    }
+
+    @Override
+    public void deletar() {
+        System.out.println("Cômodo \"" + nome + "\" deletado com sucesso!");
+    }
+
+    // Método toString para exibir informações do cômodo
+    @Override
+    public String toString() {
+        return "Comodo{" +
+                "idComodo=" + idComodo +
+                ", nome='" + nome + '\'' +
+                ", area=" + area +
+                ", dispositivos=" + dispositivos.size() + " dispositivos" +
+                '}';
     }
 }

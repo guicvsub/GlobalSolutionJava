@@ -1,71 +1,105 @@
-package com.mycompany.globalsolutionjava; 
+package com.mycompany.globalsolutionjava;
+
 import models.Usuario;
-import java.util.Scanner; // Importação da classe Scanner
 import models.Dispositivo;
+import models.Comodo;
+import java.util.Scanner;
 
 public class GlobalSolutionJava {
 
-    // Método main com a assinatura correta
     public static void main(String[] args) {
-        // Criando um objeto Usuario com dados iniciais
-        Usuario usuario = new Usuario(1, "Guilherme", "guilherme@example.com", "senha123");
+        // ---------------- Teste para a classe Dispositivo ----------------
+        Dispositivo dispositivo = new Dispositivo(
+                "00:1A:2B:3C:4D:5E",
+                "Iluminação",
+                "Philips",
+                "Smart Bulb",
+                false, // Inicialmente desligado
+                10.5f // Consumo atual em watts
+        );
 
-        // Passo 1: Testando o método de autenticação com Scanner
-        testarAutenticacao(usuario);
+        System.out.println("=== Informações do Dispositivo ===");
+        System.out.println(dispositivo);
 
-        // Passo 2: Testando os métodos de acesso e modificação de dados do usuário
-        testarAtributos(usuario);
+        System.out.println("\n=== Testando Liga/Desliga ===");
+        dispositivo.ligar();
+        dispositivo.desligar();
+        dispositivo.desligar();
 
-        // Passo 3: Testando o método de registrar cômodo
-        usuario.registrarComodo();
+        System.out.println("\n=== Monitorando Consumo ===");
+        dispositivo.monitorarConsumo();
 
-        // Passo 4: Testando o método de gerar relatório
-        usuario.gerarRelatorio();
-    }
+        System.out.println("\n=== Atualizando Consumo ===");
+        dispositivo.setConsumoAtual(15.0f);
+        dispositivo.monitorarConsumo();
 
-    // Método para testar a autenticação do usuário com dados do Scanner
-    private static void testarAutenticacao(Usuario usuario) {
-        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n=== Testando Métodos Base ===");
+        dispositivo.salvar();
+        dispositivo.atualizar();
+        dispositivo.deletar();
 
-        System.out.println("Digite o e-mail para autenticação:");
-        String email = scanner.nextLine(); // Captura o email
+        System.out.println("\n=== Informações Atualizadas ===");
+        System.out.println(dispositivo);
 
-        System.out.println("Digite a senha para autenticação:");
-        String senha = scanner.nextLine(); // Captura a senha
+        // ---------------- Teste para a classe Usuario ----------------
+        Usuario usuario = new Usuario(1, "João Silva", "joao.silva@example.com", "senha123");
 
-        System.out.println("\nTentando autenticar com os dados fornecidos...");
-        usuario.autenticar(email, senha); // Chama o método autenticar passando os dados do usuário
+        System.out.println("\n=== Informações do Usuário ===");
+        System.out.println(usuario);
 
-        // Fechando o scanner após o uso
-        scanner.close();
-    }
+        System.out.println("\n=== Adicionando Cômodos ao Usuário ===");
+        usuario.adicionarComodo("Sala");
+        usuario.adicionarComodo("Cozinha");
+        usuario.adicionarComodo("Quarto");
 
-    // Método para testar os métodos de acesso e modificação dos atributos do usuário
-    private static void testarAtributos(Usuario usuario) {
-        System.out.println("Nome do usuário: " + usuario.getNome());
-        System.out.println("Email do usuário: " + usuario.getEmail());
+        System.out.println("\nCômodos registrados:");
+        usuario.listarComodos();
 
-        // Testando a modificação do email
-        usuario.setEmail("novoemail@example.com");
-        System.out.println("Novo email do usuário: " + usuario.getEmail());
+        System.out.println("\n=== Testando Métodos Base (Usuario) ===");
+        usuario.salvar();
+        usuario.atualizar();
+        usuario.deletar();
 
-        // Testando a modificação da senha
-        usuario.setSenha("novaSenha123");
-    }
-    public static void testeComodo(){
-         Dispositivo dispositivo1 = new Dispositivo("");
-        Dispositivo dispositivo2 = new Dispositivo("Lâmpada");
+        System.out.println("\n=== Testando Autenticação ===");
+        boolean autenticado = usuario.autenticar("joao.silva@example.com", "senha123");
+        System.out.println(autenticado ? "Usuário autenticado com sucesso!" : "Falha na autenticação.");
+
+        boolean falhaAutenticacao = usuario.autenticar("joao.silva@example.com", "senhaErrada");
+        System.out.println(falhaAutenticacao ? "Usuário autenticado com sucesso!" : "Falha na autenticação.");
+
+        // ---------------- Teste para a classe Comodo ----------------
+        System.out.println("\n=== Teste para a Classe Comodo ===");
 
         // Criando um cômodo
-        Comodo comodo = new Comodo(1, "Sala", 20.0f);
+        Comodo sala = new Comodo(1, "Sala", 20.5f);
+
+        // Exibindo informações do cômodo
+        System.out.println("=== Informações do Cômodo ===");
+        System.out.println("ID: " + sala.getIdComodo());
+        System.out.println("Nome: " + sala.getNome());
+        System.out.println("Área: " + sala.getArea());
 
         // Adicionando dispositivos ao cômodo
-        comodo.adicionarDispositivo(dispositivo1);
-        comodo.adicionarDispositivo(dispositivo2);
+        System.out.println("\n=== Adicionando Dispositivos ao Cômodo ===");
+        Dispositivo tv = new Dispositivo("00:2B:3C:4D:5E:6F", "Entretenimento", "Samsung", "Smart TV", false, 150.0f);
+        Dispositivo lampada = new Dispositivo("00:3C:4D:5E:6F:7A", "Iluminação", "Philips", "LED Bulb", true, 12.0f);
+        sala.adicionarDispositivo(tv);
+        sala.adicionarDispositivo(lampada);
 
         // Listando dispositivos no cômodo
-        comodo.listarDispositivos();
-    
-    
+        System.out.println("\nDispositivos na " + sala.getNome() + ":");
+        sala.listarDispositivos();
+
+        // Atualizando área do cômodo
+        System.out.println("\n=== Atualizando Área do Cômodo ===");
+        sala.setArea(25.0f);
+        System.out.println("Área atualizada: " + sala.getArea() + " m²");
+
+        // Testando métodos da classe Base
+        System.out.println("\n=== Testando Métodos Base (Comodo) ===");
+        sala.salvar();
+        sala.atualizar();
+        sala.deletar();
     }
 }
+

@@ -1,8 +1,8 @@
 @startuml
 class Base {
-    + salvar()
-    + atualizar()
-    + deletar()
+    + salvar(): void
+    + atualizar(): void
+    + deletar(): void
 }
 
 class Usuario {
@@ -10,39 +10,60 @@ class Usuario {
     + Nome: string
     + Email: string
     + Senha: string
+    + Comodos: List<Comodo>
+    + autenticar(email: string, senha: string): boolean
+    + registrarComodo(comodo: Comodo): void
+    + gerarRelatorio(): Relatorio
 }
 
 class Comodo {
     + ID_Comodo: int
     + Nome: string
     + Area: float
+    + Dispositivos: List<Dispositivo>
+    + adicionarDispositivo(dispositivo: Dispositivo): void
+    + listarDispositivos(): List<Dispositivo>
 }
 
 class Dispositivo {
     + Endereco_MAC: string
+    + Tipo: string
     + Marca: string
     + Modelo: string
-    + Status: string
+    + Status: boolean
     + Consumo_Atual: float
+    + ligar(): void
+    + desligar(): void
+    + monitorarConsumo(): float
 }
 
 class Consumo {
     + ID_Consumo: int
-    + Data: datetime
+    + Data: Date
     + Consumo: float
+    + registrarConsumo(valor: float): void
 }
 
 class Alerta {
     + ID_Alerta: int
     + Tipo_de_Alerta: string
     + Descricao: string
-    + Data: datetime
+    + Data: Date
     + Status: string
 }
 
 class Categoria {
     + ID_Categoria: int
     + Nome_da_Categoria: string
+}
+
+class Relatorio {
+    + ID_Relatorio: int
+    + Data: Date
+    + Tipo: string
+    + Descricao: string
+    + gerarResumo(): string
+    + adicionarConsumo(consumo: Consumo): void
 }
 
 Base <|-- Usuario
@@ -57,4 +78,5 @@ Comodo "1" -- "N" Dispositivo
 Dispositivo "1" -- "N" Consumo
 Dispositivo "1" -- "N" Alerta
 Categoria "1" -- "N" Dispositivo
+Relatorio "1" -- "N" Consumo
 @enduml
