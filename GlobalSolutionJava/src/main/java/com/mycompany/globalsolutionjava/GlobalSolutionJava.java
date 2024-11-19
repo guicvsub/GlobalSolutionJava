@@ -7,6 +7,7 @@ import models.Categoria;
 import java.util.Date;
 import models.Relatorio;
 import models.Consumo;
+import models.Alerta;
 
 public class GlobalSolutionJava {
 
@@ -150,5 +151,22 @@ public class GlobalSolutionJava {
         // Gerando resumo do relatório
         System.out.println("\n=== Resumo do Relatório ===");
         System.out.println(relatorio.gerarResumo());
+
+        // ---------------- Teste para a classe Alerta ----------------
+        System.out.println("\n=== Teste para a Classe Alerta ===");
+
+        // Criando instância de Alerta
+        Alerta alerta1 = new Alerta(1, "Excesso de Consumo", "O consumo ultrapassou o limite definido", new Date(), "Ativo");
+        Alerta alerta2 = new Alerta(2, "Falha no Dispositivo", "Dispositivo está com defeito", new Date(), "Resolvido");
+
+        // Exibindo resumo dos alertas
+        System.out.println("\n=== Resumo dos Alertas ===");
+        System.out.println(alerta1.gerarResumo());
+        System.out.println(alerta2.gerarResumo());
+
+        // Atualizando o status do alerta1
+        alerta1.setStatus("Resolvido");
+        System.out.println("\n=== Após Atualização do Alerta 1 ===");
+        System.out.println(alerta1.gerarResumo());
     }
 }
