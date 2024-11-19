@@ -4,6 +4,9 @@ import models.Usuario;
 import models.Dispositivo;
 import models.Comodo;
 import models.Categoria;
+import java.util.Date;
+import models.Relatorio;
+import models.Consumo;
 
 public class GlobalSolutionJava {
 
@@ -125,5 +128,27 @@ public class GlobalSolutionJava {
         // Exibindo informações da categoria
         System.out.println("\n=== Informações da Categoria ===");
         System.out.println(iluminacao);
+
+        // ---------------- Teste para a classe Relatorio e Consumo ----------------
+        System.out.println("\n=== Teste para a Classe Relatorio e Consumo ===");
+
+        // Criando uma instância de Consumo
+        Consumo consumo1 = new Consumo(1, new Date(), 100.5f);
+        Consumo consumo2 = new Consumo(2, new Date(), 200.0f);
+
+        // Registrando consumo
+        consumo1.registrarConsumo(120.5f);
+        consumo2.registrarConsumo(210.0f);
+
+        // Criando um Relatório
+        Relatorio relatorio = new Relatorio(1, new Date(), "Mensal", "Relatório de consumo mensal de energia");
+
+        // Adicionando consumos ao relatório
+        relatorio.adicionarConsumo(consumo1);
+        relatorio.adicionarConsumo(consumo2);
+
+        // Gerando resumo do relatório
+        System.out.println("\n=== Resumo do Relatório ===");
+        System.out.println(relatorio.gerarResumo());
     }
 }
