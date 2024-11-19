@@ -1,6 +1,7 @@
 package com.mycompany.globalsolutionjava; 
 import models.Usuario;
 import java.util.Scanner; // Importação da classe Scanner
+import models.Dispositivo;
 
 public class GlobalSolutionJava {
 
@@ -50,5 +51,21 @@ public class GlobalSolutionJava {
 
         // Testando a modificação da senha
         usuario.setSenha("novaSenha123");
+    }
+    public static void testeComodo(){
+         Dispositivo dispositivo1 = new Dispositivo("");
+        Dispositivo dispositivo2 = new Dispositivo("Lâmpada");
+
+        // Criando um cômodo
+        Comodo comodo = new Comodo(1, "Sala", 20.0f);
+
+        // Adicionando dispositivos ao cômodo
+        comodo.adicionarDispositivo(dispositivo1);
+        comodo.adicionarDispositivo(dispositivo2);
+
+        // Listando dispositivos no cômodo
+        comodo.listarDispositivos();
+    
+    
     }
 }

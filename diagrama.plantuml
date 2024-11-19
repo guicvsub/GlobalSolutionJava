@@ -1,0 +1,60 @@
+@startuml
+class Base {
+    + salvar()
+    + atualizar()
+    + deletar()
+}
+
+class Usuario {
+    + ID: int
+    + Nome: string
+    + Email: string
+    + Senha: string
+}
+
+class Comodo {
+    + ID_Comodo: int
+    + Nome: string
+    + Area: float
+}
+
+class Dispositivo {
+    + Endereco_MAC: string
+    + Marca: string
+    + Modelo: string
+    + Status: string
+    + Consumo_Atual: float
+}
+
+class Consumo {
+    + ID_Consumo: int
+    + Data: datetime
+    + Consumo: float
+}
+
+class Alerta {
+    + ID_Alerta: int
+    + Tipo_de_Alerta: string
+    + Descricao: string
+    + Data: datetime
+    + Status: string
+}
+
+class Categoria {
+    + ID_Categoria: int
+    + Nome_da_Categoria: string
+}
+
+Base <|-- Usuario
+Base <|-- Comodo
+Base <|-- Dispositivo
+Base <|-- Consumo
+Base <|-- Alerta
+Base <|-- Categoria
+
+Usuario "1" -- "N" Comodo
+Comodo "1" -- "N" Dispositivo
+Dispositivo "1" -- "N" Consumo
+Dispositivo "1" -- "N" Alerta
+Categoria "1" -- "N" Dispositivo
+@enduml

@@ -1,5 +1,8 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author gui
@@ -14,8 +17,9 @@ public class Comodo {
         this.nomeComodo = nomeComodo;
         this.area = area;
     }
-
-    public Comodo(int id, String nomeComodo) {
+   List<Dispositivo> listaDeDispositivos = new ArrayList<>();
+    
+   public Comodo(int id, String nomeComodo) {
         this.id = id;
         this.nomeComodo = nomeComodo;
     }
@@ -35,11 +39,18 @@ public class Comodo {
     public void setArea(Float area) {
         this.area = area;
     }
-    public void adicionarDispositivo(){
+    public void adicionarDispositivo(Dispositivo dispositivo) {
+        listaDeDispositivos.add(dispositivo);
+    }
+    public void listarDispositivos() {
+        if (listaDeDispositivos.isEmpty()) {
+            System.out.println("Nenhum dispositivo encontrado no cômodo.");
+        } else {
+            System.out.println("Dispositivos no cômodo " + nomeComodo + ":");
+            for (Dispositivo dispositivo : listaDeDispositivos) {
+                System.out.println(dispositivo);
+            }
+        }
     
     }
-    public void listarDispositivos(){
-    
-    }
-    
 }
