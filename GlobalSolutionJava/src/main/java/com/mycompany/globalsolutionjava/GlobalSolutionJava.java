@@ -3,7 +3,7 @@ package com.mycompany.globalsolutionjava;
 import models.Usuario;
 import models.Dispositivo;
 import models.Comodo;
-import java.util.Scanner;
+import models.Categoria;
 
 public class GlobalSolutionJava {
 
@@ -100,6 +100,30 @@ public class GlobalSolutionJava {
         sala.salvar();
         sala.atualizar();
         sala.deletar();
+
+        // ---------------- Teste para a classe Categoria ----------------
+        System.out.println("\n=== Teste para a Classe Categoria ===");
+
+        // Criando uma categoria
+        Categoria iluminacao = new Categoria(1, "Iluminação");
+
+        // Adicionando dispositivos à categoria
+        System.out.println("\n=== Adicionando Dispositivos à Categoria ===");
+        iluminacao.adicionarDispositivo(dispositivo);
+        iluminacao.adicionarDispositivo(lampada);
+
+        // Listando dispositivos na categoria
+        System.out.println("\nDispositivos na Categoria " + iluminacao.getNomeCategoria() + ":");
+        iluminacao.listarDispositivos();
+
+        // Testando métodos da classe Base
+        System.out.println("\n=== Testando Métodos Base (Categoria) ===");
+        iluminacao.salvar();
+        iluminacao.atualizar();
+        iluminacao.deletar();
+
+        // Exibindo informações da categoria
+        System.out.println("\n=== Informações da Categoria ===");
+        System.out.println(iluminacao);
     }
 }
-
