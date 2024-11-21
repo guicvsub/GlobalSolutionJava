@@ -4,10 +4,12 @@ import models.Usuario;
 import models.Dispositivo;
 import models.Comodo;
 import models.Categoria;
-import java.util.Date;
 import models.Relatorio;
 import models.Consumo;
 import models.Alerta;
+
+import java.util.Date;
+import java.util.Scanner;
 
 public class GlobalSolutionJava {
 
@@ -64,12 +66,29 @@ public class GlobalSolutionJava {
         usuario.atualizar();
         usuario.deletar();
 
+        // Teste de autenticação com Scanner
         System.out.println("\n=== Testando Autenticação ===");
-        boolean autenticado = usuario.autenticar("joao.silva@example.com", "senha123");
-        System.out.println(autenticado ? "Usuário autenticado com sucesso!" : "Falha na autenticação.");
 
-        boolean falhaAutenticacao = usuario.autenticar("joao.silva@example.com", "senhaErrada");
-        System.out.println(falhaAutenticacao ? "Usuário autenticado com sucesso!" : "Falha na autenticação.");
+        // Scanner para entrada de dados
+        Scanner scanner = new Scanner(System.in);
+
+        // Solicitando e capturando o e-mail
+        System.out.print("Digite o e-mail para autenticação: ");
+        String emailInput = scanner.nextLine();
+
+        // Solicitando e capturando a senha
+        System.out.print("Digite a senha para autenticação: ");
+        String senhaInput = scanner.nextLine();
+
+        // Chamando o método autenticar com as entradas fornecidas
+        boolean autenticado = usuario.autenticar(emailInput, senhaInput);
+
+        // Exibindo o resultado
+        if (autenticado) {
+            System.out.println("Usuário autenticado com sucesso!");
+        } else {
+            System.out.println("Falha na autenticação. Verifique o e-mail e a senha.");
+        }
 
         // ---------------- Teste para a classe Comodo ----------------
         System.out.println("\n=== Teste para a Classe Comodo ===");
@@ -168,5 +187,8 @@ public class GlobalSolutionJava {
         alerta1.setStatus("Resolvido");
         System.out.println("\n=== Após Atualização do Alerta 1 ===");
         System.out.println(alerta1.gerarResumo());
+
+        // Fechando o scanner
+        scanner.close();
     }
 }
