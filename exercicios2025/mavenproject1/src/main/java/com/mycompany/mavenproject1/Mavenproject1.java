@@ -18,6 +18,10 @@ Users u1 = new Users ("user1", "1234");
 Users u2 = new Users("user2", "5678");
 Users u3 = new Users("user3", "91011");
 System.out.println("Total de usuários: " + cout);
+
+
+       double preco = Calculadora.calculajuros(3000,3);
+        System.out.println(preco );
     }
 }
 
