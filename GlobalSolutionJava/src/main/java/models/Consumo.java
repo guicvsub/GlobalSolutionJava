@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author gui
  */
-public class Consumo {
+public class Consumo  extends Base{
     private int ID_Consumo;
     private Date Data;
     private float Consumo;

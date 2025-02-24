@@ -12,7 +12,7 @@ import java.util.Date;
  * @author gui
  */
 
-    public class Relatorio {
+    public class Relatorio extends Base{
     private int ID_Relatorio;
     private Date Data;
     private String Tipo;
@@ -36,7 +36,7 @@ import java.util.Date;
                "Descrição: " + Descricao;
     }
 
-    // Método para adicionar consumo ao relatório
+    
     public void adicionarConsumo(Consumo consumo) {
         this.consumos.add(consumo);
     }

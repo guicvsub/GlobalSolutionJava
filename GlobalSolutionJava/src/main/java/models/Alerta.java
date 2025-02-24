@@ -10,7 +10,7 @@ package models;
  */
 import java.util.Date;
 
-public class Alerta {
+public class Alerta extends Base{
     private int ID_Alerta;
     private String Tipo_de_Alerta;
     private String Descricao;
