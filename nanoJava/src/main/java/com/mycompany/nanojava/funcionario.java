@@ -8,7 +8,7 @@ package com.mycompany.nanojava;
  *
  * @author gui
  */
-public class funcionario {
+abstract class  funcionario {
     public String nome;
     public  double salario;
 
@@ -17,11 +17,5 @@ public class funcionario {
         this.salario = salario;
     }
     
-  public double calculaSalario(){
-        double bonus=0.00;
-       double salarioFinal =  this.salario + bonus;
-        return salarioFinal;
-    
-    
-    }
+abstract double calculaSalario();
 }
